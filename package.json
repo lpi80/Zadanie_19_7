@@ -1,0 +1,27 @@
+{
+  "name": "zadanie_19_7",
+  "version": "1.0.0",
+  "description": "Babel",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "babel script.js --watch --out-file build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lpi80/zadanie_19_7.git"
+  },
+  "author": "LPI",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lpi80/zadanie_19_7/issues"
+  },
+  "homepage": "https://github.com/lpi80/zadanie_19_7#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1"
+  },
+  "dependencies": {}
+}

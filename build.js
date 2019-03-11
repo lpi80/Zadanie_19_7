@@ -19,6 +19,14 @@ function randomString() {
     return str;
 }
 
+function pad0(value) {
+    var result = value.toString();
+    if (result.length < 2) {
+        result = '0' + result;
+    }
+    return result;
+};
+
 var Stopwatch = function (_React$Component) {
     _inherits(Stopwatch, _React$Component);
 
@@ -98,18 +106,9 @@ var Stopwatch = function (_React$Component) {
             });
         }
     }, {
-        key: 'pad0',
-        value: function pad0(value) {
-            var result = value.toString();
-            if (result.length < 2) {
-                result = '0' + result;
-            }
-            return result;
-        }
-    }, {
         key: 'format',
         value: function format(times) {
-            return this.pad0(times.minutes) + ':' + this.pad0(times.seconds) + ':' + this.pad0(times.miliseconds);
+            return pad0(times.minutes) + ':' + pad0(times.seconds) + ':' + pad0(times.miliseconds);
         }
     }, {
         key: 'add',
@@ -154,28 +153,28 @@ var Stopwatch = function (_React$Component) {
                     'nav',
                     { className: 'controls' },
                     React.createElement(
-                        'a',
-                        { href: '#', className: 'button', id: 'start', onClick: this.start },
+                        'button',
+                        { className: 'button', id: 'start', onClick: this.start },
                         'Start'
                     ),
                     React.createElement(
-                        'a',
-                        { href: '#', className: 'button', id: 'stop', onClick: this.stop },
+                        'button',
+                        { className: 'button', id: 'stop', onClick: this.stop },
                         'Stop'
                     ),
                     React.createElement(
-                        'a',
-                        { href: '#', className: 'button', id: 'reset', onClick: this.reset },
+                        'button',
+                        { className: 'button', id: 'reset', onClick: this.reset },
                         'Reset'
                     ),
                     React.createElement(
-                        'a',
-                        { href: '#', className: 'button', id: 'add', onClick: this.addClick },
+                        'button',
+                        { className: 'button', id: 'add', onClick: this.addClick },
                         'Add'
                     ),
                     React.createElement(
-                        'a',
-                        { href: '#', className: 'button', id: 'clear', onClick: this.clear },
+                        'button',
+                        { className: 'button', id: 'clear', onClick: this.clear },
                         'Clear list'
                     )
                 ),

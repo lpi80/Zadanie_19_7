@@ -7,6 +7,14 @@ function randomString() {
     return str;
 }
 
+function pad0(value) {
+    let result = value.toString();
+    if (result.length < 2) {
+        result = '0' + result;
+    }
+    return result;
+    
+};
 
 class Stopwatch extends React.Component {
     constructor() {
@@ -46,7 +54,7 @@ class Stopwatch extends React.Component {
                 times.seconds = 0;
             }
 
-            return times
+            return times;
         })
     }
 
@@ -67,21 +75,13 @@ class Stopwatch extends React.Component {
             times.minutes = 0;
             times.seconds = 0;
             times.miliseconds = 0;
-            return times
+            return times;
         })
     }
 
    
-    pad0(value) {
-        let result = value.toString();
-        if (result.length < 2) {
-            result = '0' + result;
-        }
-        return result;
-    }
-
     format(times) {
-        return `${this.pad0(times.minutes)}:${this.pad0(times.seconds)}:${this.pad0(times.miliseconds)}`;
+        return `${pad0(times.minutes)}:${pad0(times.seconds)}:${pad0(times.miliseconds)}`;
     }
 
     add(val) {
@@ -111,11 +111,11 @@ class Stopwatch extends React.Component {
             <div>
                 <nav className="controls">
 
-                    <a href="#" className="button" id='start' onClick={this.start}>Start</a>
-                    <a href="#" className="button" id='stop' onClick={this.stop}>Stop</a>
-                    <a href="#" className="button" id='reset' onClick={this.reset}>Reset</a>
-                    <a href="#" className="button" id='add' onClick={this.addClick}>Add</a>
-                    <a href="#" className="button" id='clear' onClick={this.clear}>Clear list</a>
+                    <button className="button" id='start' onClick={this.start}>Start</button>
+                    <button className="button" id='stop' onClick={this.stop}>Stop</button>
+                    <button className="button" id='reset' onClick={this.reset}>Reset</button>
+                    <button className="button" id='add' onClick={this.addClick}>Add</button>
+                    <button className="button" id='clear' onClick={this.clear}>Clear list</button>
 
                 </nav>
                 <div className="stopwatch">

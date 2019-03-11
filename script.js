@@ -1,3 +1,13 @@
+function randomString() {
+    let chars = '0123456789abcdefghiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXTZ';
+    let str = '';
+    for (let i = 0; i < 10; i++) {
+        str += chars[Math.floor(Math.random() * chars.length)];
+    }
+    return str;
+}
+
+
 class Stopwatch extends React.Component {
     constructor() {
         super();
@@ -13,7 +23,7 @@ class Stopwatch extends React.Component {
         this.start = this.start.bind(this);
         this.stop = this.stop.bind(this);
         this.reset = this.reset.bind(this);
-        this.add = this.add.bind(this);
+        this.addClick = this.addClick.bind(this);
         this.clear = this.clear.bind(this);
     }
 
@@ -61,6 +71,7 @@ class Stopwatch extends React.Component {
         })
     }
 
+   
     pad0(value) {
         let result = value.toString();
         if (result.length < 2) {
@@ -73,21 +84,29 @@ class Stopwatch extends React.Component {
         return `${this.pad0(times.minutes)}:${this.pad0(times.seconds)}:${this.pad0(times.miliseconds)}`;
     }
 
-    add() {
-        const timeList = [...this.state.timeList, this.state.times];
+    add(val) {
+        const timeData = {
+            times: val,
+            id: randomString(),
+        }
+        const timeList = [...this.state.timeList, timeData];
         this.setState({ timeList })
     }
 
+    addClick() {
+        const time = Object.assign({},this.state.times);
+        this.add(time);
+    }
+
     clear() {
-        const remainder = this.state.timeList.filter(times => times.miliseconds == null);
+        const remainder = this.state.timeList.filter(id => id == '');
         this.setState({ timeList: remainder });
     }
 
     render() {
-        this.timeList = this.state.timeList.map(time => {
-            return <li>{this.format(time)}</li>;
+        const timeList = this.state.timeList.map(data => {
+            return <li>{this.format(data.times)}</li>;
         })
-
         return (
             <div>
                 <nav className="controls">
@@ -95,14 +114,14 @@ class Stopwatch extends React.Component {
                     <a href="#" className="button" id='start' onClick={this.start}>Start</a>
                     <a href="#" className="button" id='stop' onClick={this.stop}>Stop</a>
                     <a href="#" className="button" id='reset' onClick={this.reset}>Reset</a>
-                    <a href="#" className="button" id='add' onClick={this.add}>Add</a>
+                    <a href="#" className="button" id='add' onClick={this.addClick}>Add</a>
                     <a href="#" className="button" id='clear' onClick={this.clear}>Clear list</a>
 
                 </nav>
                 <div className="stopwatch">
                     <h1>{this.format(this.state.times)}</h1>
                 </div>
-                <ul class="results">{this.timeList}</ul>
+                <ul class="results">{timeList}</ul>
             </div>
 
         )
